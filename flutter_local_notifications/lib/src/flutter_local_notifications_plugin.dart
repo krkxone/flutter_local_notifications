@@ -360,25 +360,25 @@ class FlutterLocalNotificationsPlugin {
       return;
     }
 
-    repeatStartTime = repeatStartTime != null ? getMillisecondsSinceEpoch(repeatStartTime);
+    repeatStartTime != null ? getMillisecondsSinceEpoch(repeatStartTime) : clock.now().millisecondsSinceEpoch
 
     if (defaultTargetPlatform == TargetPlatform.android) {
       await resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.periodicallyShow(
-          id, title, body, repeatStartTime ?? null, repeatInterval,
+          id, title, body, repeatStartTime, repeatInterval,
           notificationDetails: notificationDetails.android,
           payload: payload,
           scheduleMode: _chooseScheduleMode(androidScheduleMode, androidAllowWhileIdle));
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       await resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()?.periodicallyShow(
-          id, title, body, repeatStartTime ?? null, repeatInterval,
+          id, title, body, repeatStartTime, repeatInterval,
           notificationDetails: notificationDetails.iOS, payload: payload);
     } else if (defaultTargetPlatform == TargetPlatform.macOS) {
       await resolvePlatformSpecificImplementation<MacOSFlutterLocalNotificationsPlugin>()?.periodicallyShow(
-          id, title, body, repeatStartTime ?? null, repeatInterval,
+          id, title, body, repeatStartTime, repeatInterval,
           notificationDetails: notificationDetails.macOS, payload: payload);
     } else {
       await FlutterLocalNotificationsPlatform.instance
-          .periodicallyShow(id, title, body, repeatStartTime ?? null, repeatInterval);
+          .periodicallyShow(id, title, body, repeatStartTime, repeatInterval);
     }
   }
 
