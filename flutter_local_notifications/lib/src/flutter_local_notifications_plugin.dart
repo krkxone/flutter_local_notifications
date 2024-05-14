@@ -360,7 +360,7 @@ class FlutterLocalNotificationsPlugin {
       return;
     }
 
-    repeatStartTime != null ? getMillisecondsSinceEpoch(repeatStartTime) : clock.now().millisecondsSinceEpoch
+    repeatStartTime != null ? getMillisecondsSinceEpoch(repeatStartTime) : clock.now().millisecondsSinceEpoch;
 
     if (defaultTargetPlatform == TargetPlatform.android) {
       await resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.periodicallyShow(
