@@ -359,6 +359,9 @@ class FlutterLocalNotificationsPlugin {
     if (kIsWeb) {
       return;
     }
+
+    repeatStartTime = repeatStartTime != null ? getMillisecondsSinceEpoch(repeatStartTime);
+
     if (defaultTargetPlatform == TargetPlatform.android) {
       await resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.periodicallyShow(
           id, title, body, repeatStartTime ?? null, repeatInterval,
@@ -397,4 +400,14 @@ class FlutterLocalNotificationsPlugin {
   /// On Linux it will throw an [UnimplementedError].
   Future<List<ActiveNotification>> getActiveNotifications() =>
       FlutterLocalNotificationsPlatform.instance.getActiveNotifications();
+}
+
+int getMillisecondsSinceEpoch(DateTime datetime) {
+  DateTime now = DateTime.now();
+
+  // Ein DateTime-Objekt für heute 08:00 Uhr erstellen
+  DateTime specificTime = DateTime(now.year, now.month, now.day, datetime.hour, datetime.minute, 0);
+
+  // Millisekunden seit der Epoche zurückgeben
+  return specificTime.millisecondsSinceEpoch;
 }
