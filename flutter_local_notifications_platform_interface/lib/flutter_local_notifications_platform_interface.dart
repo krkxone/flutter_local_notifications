@@ -28,16 +28,13 @@ abstract class FlutterLocalNotificationsPlatform extends PlatformInterface {
   }
 
   /// Returns info on if a notification had been used to launch the application.
-  Future<NotificationAppLaunchDetails?>
-      getNotificationAppLaunchDetails() async {
-    throw UnimplementedError(
-        'getNotificationAppLaunchDetails() has not been implemented');
+  Future<NotificationAppLaunchDetails?> getNotificationAppLaunchDetails() async {
+    throw UnimplementedError('getNotificationAppLaunchDetails() has not been implemented');
   }
 
   /// Show a notification with an optional payload that will be passed back to
   /// the app when a notification is tapped on.
-  Future<void> show(int id, String? title, String? body,
-      {String? payload}) async {
+  Future<void> show(int id, String? title, String? body, {String? payload}) async {
     throw UnimplementedError('show() has not been implemented');
   }
 
@@ -46,7 +43,7 @@ abstract class FlutterLocalNotificationsPlatform extends PlatformInterface {
   /// notification will be an hour after the method has been called and then
   /// every hour after that.
   Future<void> periodicallyShow(
-      int id, String? title, String? body, RepeatInterval repeatInterval) {
+      int id, String? title, String? body, DateTime? repeatStartTime, RepeatInterval repeatInterval) {
     throw UnimplementedError('periodicallyShow() has not been implemented');
   }
 
@@ -65,8 +62,7 @@ abstract class FlutterLocalNotificationsPlatform extends PlatformInterface {
 
   /// Returns a list of notifications pending to be delivered/shown
   Future<List<PendingNotificationRequest>> pendingNotificationRequests() {
-    throw UnimplementedError(
-        'pendingNotificationRequest() has not been implemented');
+    throw UnimplementedError('pendingNotificationRequest() has not been implemented');
   }
 
   /// Returns the list of active notifications shown by the application that
@@ -77,7 +73,6 @@ abstract class FlutterLocalNotificationsPlatform extends PlatformInterface {
   /// returned. On platforms that don't support the method at all,
   /// it will throw an [UnimplementedError].
   Future<List<ActiveNotification>> getActiveNotifications() {
-    throw UnimplementedError(
-        'getActiveNotifications() has not been implemented');
+    throw UnimplementedError('getActiveNotifications() has not been implemented');
   }
 }
