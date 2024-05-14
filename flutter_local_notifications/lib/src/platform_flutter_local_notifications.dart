@@ -309,7 +309,7 @@ class AndroidFlutterLocalNotificationsPlugin extends MethodChannelFlutterLocalNo
     int id,
     String? title,
     String? body,
-    DateTime? repeatStartTime,
+    int? repeatStartTime,
     RepeatInterval repeatInterval, {
     AndroidNotificationDetails? notificationDetails,
     String? payload,
@@ -320,8 +320,7 @@ class AndroidFlutterLocalNotificationsPlugin extends MethodChannelFlutterLocalNo
       'id': id,
       'title': title,
       'body': body,
-      'calledAt':
-          repeatStartTime != null ? getMillisecondsSinceEpoch(repeatStartTime) : clock.now().millisecondsSinceEpoch,
+      'calledAt': repeatStartTime ?? clock.now().millisecondsSinceEpoch,
       'repeatInterval': repeatInterval.index,
       'platformSpecifics': _buildPlatformSpecifics(notificationDetails, scheduleMode),
       'payload': payload ?? '',
@@ -682,7 +681,7 @@ class IOSFlutterLocalNotificationsPlugin extends MethodChannelFlutterLocalNotifi
     int id,
     String? title,
     String? body,
-    DateTime? repeatStartTime,
+    int? repeatStartTime,
     RepeatInterval repeatInterval, {
     DarwinNotificationDetails? notificationDetails,
     String? payload,
@@ -692,8 +691,7 @@ class IOSFlutterLocalNotificationsPlugin extends MethodChannelFlutterLocalNotifi
       'id': id,
       'title': title,
       'body': body,
-      'calledAt':
-          repeatStartTime != null ? getMillisecondsSinceEpoch(repeatStartTime) : clock.now().millisecondsSinceEpoch,
+      'calledAt': repeatStartTime ?? clock.now().millisecondsSinceEpoch,
       'repeatInterval': repeatInterval.index,
       'platformSpecifics': notificationDetails?.toMap(),
       'payload': payload ?? ''
@@ -846,7 +844,7 @@ class MacOSFlutterLocalNotificationsPlugin extends MethodChannelFlutterLocalNoti
     int id,
     String? title,
     String? body,
-    DateTime? repeatStartTime,
+    int? repeatStartTime,
     RepeatInterval repeatInterval, {
     DarwinNotificationDetails? notificationDetails,
     String? payload,
@@ -856,8 +854,7 @@ class MacOSFlutterLocalNotificationsPlugin extends MethodChannelFlutterLocalNoti
       'id': id,
       'title': title,
       'body': body,
-      'calledAt':
-          repeatStartTime != null ? getMillisecondsSinceEpoch(repeatStartTime) : clock.now().millisecondsSinceEpoch,
+      'calledAt': repeatStartTime ?? clock.now().millisecondsSinceEpoch,
       'repeatInterval': repeatInterval.index,
       'platformSpecifics': notificationDetails?.toMap(),
       'payload': payload ?? ''

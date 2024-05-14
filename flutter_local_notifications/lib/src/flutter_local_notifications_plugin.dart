@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:clock/clock.dart';
 
+import 'package:clock/clock.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications_linux/flutter_local_notifications_linux.dart';
 import 'package:flutter_local_notifications_platform_interface/flutter_local_notifications_platform_interface.dart';
@@ -350,7 +350,7 @@ class FlutterLocalNotificationsPlugin {
     int id,
     String? title,
     String? body,
-    DateTime? repeatStartTime,
+    int? repeatStartTime,
     RepeatInterval repeatInterval,
     NotificationDetails notificationDetails, {
     String? payload,
@@ -361,25 +361,24 @@ class FlutterLocalNotificationsPlugin {
       return;
     }
 
-    repeatStartTime != null ? getMillisecondsSinceEpoch(repeatStartTime) : clock.now().millisecondsSinceEpoch;
+    int startTime = repeatStartTime ?? clock.now().millisecondsSinceEpoch;
 
     if (defaultTargetPlatform == TargetPlatform.android) {
       await resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.periodicallyShow(
-          id, title, body, repeatStartTime, repeatInterval,
+          id, title, body, startTime, repeatInterval,
           notificationDetails: notificationDetails.android,
           payload: payload,
           scheduleMode: _chooseScheduleMode(androidScheduleMode, androidAllowWhileIdle));
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       await resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()?.periodicallyShow(
-          id, title, body, repeatStartTime, repeatInterval,
+          id, title, body, startTime, repeatInterval,
           notificationDetails: notificationDetails.iOS, payload: payload);
     } else if (defaultTargetPlatform == TargetPlatform.macOS) {
       await resolvePlatformSpecificImplementation<MacOSFlutterLocalNotificationsPlugin>()?.periodicallyShow(
-          id, title, body, repeatStartTime, repeatInterval,
+          id, title, body, startTime, repeatInterval,
           notificationDetails: notificationDetails.macOS, payload: payload);
     } else {
-      await FlutterLocalNotificationsPlatform.instance
-          .periodicallyShow(id, title, body, repeatStartTime, repeatInterval);
+      await FlutterLocalNotificationsPlatform.instance.periodicallyShow(id, title, body, startTime, repeatInterval);
     }
   }
 

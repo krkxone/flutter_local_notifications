@@ -43,7 +43,7 @@ abstract class FlutterLocalNotificationsPlatform extends PlatformInterface {
   /// notification will be an hour after the method has been called and then
   /// every hour after that.
   Future<void> periodicallyShow(
-      int id, String? title, String? body, DateTime? repeatStartTime, RepeatInterval repeatInterval) {
+      int id, String? title, String? body, int? repeatStartTime, RepeatInterval repeatInterval) {
     throw UnimplementedError('periodicallyShow() has not been implemented');
   }
 
