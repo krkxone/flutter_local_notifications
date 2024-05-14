@@ -4,12 +4,9 @@ import 'model/capabilities.dart';
 import 'model/initialization_settings.dart';
 import 'model/notification_details.dart';
 
-export 'package:flutter_local_notifications_platform_interface/flutter_local_notifications_platform_interface.dart';
-
 /// The interface that all implementations of flutter_local_notifications_linux
 /// must implement.
-abstract class FlutterLocalNotificationsPlatformLinux
-    extends FlutterLocalNotificationsPlatform {
+abstract class FlutterLocalNotificationsPlatformLinux extends FlutterLocalNotificationsPlatform {
   /// Initializes the plugin.
   ///
   /// Call this method on application before using the plugin further.
